@@ -28,9 +28,7 @@ param(
 $ErrorActionPreference = "Stop"
 
 # Initializing variables
-[string]$RunbookName = "SQLIaaSRunbook"
-#[string]$WebhookName = "WVDAutoScaleWebhook"
-
+[string]$RunbookName = "Deploy-SQLIaaS-Extension"
 
 # Import Az and AzureAD modules
 Import-Module Az.Resources
