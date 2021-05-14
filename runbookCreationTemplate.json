@@ -21,7 +21,7 @@
             "metadata": {
                 "description": "The URI of the scaling script for the Runbook"
             },
-            "defaultValue": "https://raw.githubusercontent.com/Azure/RDS-Templates/master/wvd-templates/wvd-scaling-script/basicScale.ps1"
+            "defaultValue": "https://raw.githubusercontent.com/shaunjacob/sql-iaas-extension/main/deployextension.ps1"
         },
         "location": {
             "type": "String",

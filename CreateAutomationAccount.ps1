@@ -7,27 +7,19 @@
 #>
 param(
 	[Parameter(mandatory = $false)]
-	[string]$AADTenantId,
-	
-	[Parameter(mandatory = $false)]
 	[string]$SubscriptionId,
 	
-	[switch]$UseARMAPI,
+	[Parameter(mandatory = $false)]
+	[string]$ResourceGroupName = "SQLIaaSResourceGroup",
 
 	[Parameter(mandatory = $false)]
-	[string]$ResourceGroupName = "WVDAutoScaleResourceGroup",
+	[string]$AutomationAccountName = "SQLIaaSAutomationAccount",
 
 	[Parameter(mandatory = $false)]
-	[string]$AutomationAccountName = "WVDAutoScaleAutomationAccount",
+	[string]$Location = "Australia East",
 
 	[Parameter(mandatory = $false)]
-	[string]$Location = "West US2",
-
-	[Parameter(mandatory = $false)]
-	[string]$WorkspaceName,
-
-	[Parameter(mandatory = $false)]
-	[string]$ArtifactsURI = 'https://raw.githubusercontent.com/Azure/RDS-Templates/master/wvd-templates/wvd-scaling-script'
+	[string]$ArtifactsURI = 'https://raw.githubusercontent.com/shaunjacob/sql-iaas-extension/main'
 )
 
 # //todo refactor, improve error logging, externalize, centralize vars
@@ -36,26 +28,21 @@ param(
 $ErrorActionPreference = "Stop"
 
 # Initializing variables
-[string]$RunbookName = "DeployIaaSExtension"
+[string]$RunbookName = "SQLIaaSRunbook"
 #[string]$WebhookName = "WVDAutoScaleWebhook"
 
-
-# Set the ExecutionPolicy if not being ran in CloudShell as this command fails in CloudShell
-if ($env:POWERSHELL_DISTRIBUTION_CHANNEL -ne 'CloudShell') {
-	Set-ExecutionPolicy -ExecutionPolicy Unrestricted -Scope CurrentUser -Force -Confirm:$false
-}
 
 # Import Az and AzureAD modules
 Import-Module Az.Resources
 Import-Module Az.Accounts
-Import-Module Az.OperationalInsights
 Import-Module Az.Automation
 
 [array]$RequiredModules = @(
 	'Az.Accounts'
 	'Az.Compute'
 	'Az.Resources'
-	'Az.Automation'
+	'Az.PolicyInsights'
+	'Az.SqlVirtualMachine'
 )
 
 # Function to check if the module is imported
@@ -144,12 +131,7 @@ function Add-ModuleToAutoAccount {
 	$Res = $null
 	do {
 		$ActualUrl = $ModuleContentUrl
-		if ($SkipHttpErrorCheckParam) {
-			$Res = Invoke-WebRequest -Uri $ModuleContentUrl -MaximumRedirection 0 -UseBasicParsing -SkipHttpErrorCheck -ErrorAction Ignore
-		}
-		else {
-			$Res = Invoke-WebRequest -Uri $ModuleContentUrl -MaximumRedirection 0 -UseBasicParsing -ErrorAction Ignore
-		}
+		$Res = Invoke-WebRequest -Uri $ModuleContentUrl -MaximumRedirection 0 -UseBasicParsing -SkipHttpErrorCheck -ErrorAction Ignore
 		$ModuleContentUrl = $Res.Headers['Location']
 	} while ($ModuleContentUrl)
 
@@ -159,13 +141,10 @@ function Add-ModuleToAutoAccount {
 
 # Note: the URL for the scaling script will be suffixed with current timestamp in order to force the ARM template to update the existing runbook script in the auto account if any
 $URISuffix = "?time=$(get-date -f "yyyy-MM-dd_HH-mm-ss")"
-$ScriptURI = "$ArtifactsURI/basicScale.ps1"
-if (!$UseRDSAPI) {
-	$ScriptURI = "$ArtifactsURI/ARM_based/basicScale.ps1"
-}
+$ScriptURI = "$ArtifactsURI/deployextension.ps1"
 
 # Creating an automation account & runbook and publish the scaling script file
-$DeploymentStatus = New-AzResourceGroupDeployment -ResourceGroupName $ResourceGroupName -TemplateUri "$ArtifactsURI/runbookCreationTemplate.json" -automationAccountName $AutomationAccountName -RunbookName $RunbookName -location $Location -scriptUri "$ScriptURI$($URISuffix)" -Force -Verbose
+$DeploymentStatus = New-AzResourceGroupDeployment -ResourceGroupName $ResourceGroupName -TemplateUri "$ArtifactsURI/runbookCreationTemplate.json" -AutomationAccountName $AutomationAccountName -RunbookName $RunbookName -location $Location -scriptUri "$ScriptURI$($URISuffix)" -Force -Verbose
 
 if ($DeploymentStatus.ProvisioningState -ne 'Succeeded') {
 	throw "Some error occurred while deploying a runbook. Deployment Provisioning Status: $($DeploymentStatus.ProvisioningState)"
