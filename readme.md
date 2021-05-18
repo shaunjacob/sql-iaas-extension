@@ -39,18 +39,17 @@ This Initiative contains the following policy definitions:
  
  
 
-"### 1." Select **Assign** to assign this initiative to your chosen subscription(s), you may add exclusions if required.
+1. Select **Assign** to assign this initiative to your chosen subscription(s), you may add exclusions if required.
 
 ![Guest Configuration 1](https://github.com/shaunjacob/sql-iaas-extension/blob/main/Images/Guest%20Config%201.png)
 
 
-
-### 2. Under remediation, you will notice that a managed identity will be created. This is necessary to allow the scanning of deployed software inside a guest VM. This identity can be created in a location if your choice. Tick the box to “Create a remediation task”, which will add the system assigned managed identity to existing VM’s
+2. Under remediation, you will notice that a managed identity will be created. This is necessary to allow the scanning of deployed software inside a guest VM. This identity can be created in a location if your choice. Tick the box to “Create a remediation task”, which will add the system assigned managed identity to existing VM’s
 
 ![Guest Configuration 2](https://github.com/shaunjacob/sql-iaas-extension/blob/main/Images/Guest%20Config%202.png)
 
 
-### 3. Review and Create.
+3. Review and Create.
 
 ![Guest Configuration 2](https://github.com/shaunjacob/sql-iaas-extension/blob/main/Images/Guest%20Config%203.png)
 
@@ -59,7 +58,6 @@ This Initiative contains the following policy definitions:
 ## 2.   In-guest application policy
 
  
-
 The final policy that needs to be applied is:
 
 **Audit Windows machines that don’t have the specified applications installed.**
@@ -68,19 +66,16 @@ This policy works by scanning the registry for the application name, and if foun
 
 1. Select **Assign** to assign this policy to your chosen subscription(s), you may add exclusions if required
 
-![img](file:///C:/Users/SHAUNJ~1/AppData/Local/Temp/msohtmlclip1/01/clip_image008.jpg)
+![In Guest 1](https://github.com/shaunjacob/sql-iaas-extension/blob/main/Images/In%20Guest%20Policy%201.png)
 
-
-
- 
 
 2. Define the applications to scan and report back on: 
 
    For example: ***Microsoft SQL Server SQL2019\****
 
  
+![In Guest 2](https://github.com/shaunjacob/sql-iaas-extension/blob/main/Images/In%20Guest%20Policy%202.png)
 
-![A picture containing text  Description automatically generated](file:///C:/Users/SHAUNJ~1/AppData/Local/Temp/msohtmlclip1/01/clip_image010.jpg)
 
 3. Review and Create
 
