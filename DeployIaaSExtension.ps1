@@ -26,15 +26,11 @@ catch {
 # Scale Up Starts Here
 $Start = Get-Date
 
-Write-Host "Starting Compliance Job"
-
 #Define the policy definition, this is the same ID across all Azure tenants
 $PolicyDefinitionId = '/providers/Microsoft.Authorization/policyDefinitions/ebb67efd-3c46-49b0-adfe-5599eb944998'
 
 #Identify the VM's that are Compliant, and have SQL installed
 $CompliantVMs = Get-AzPolicyState | Where-Object { $_.ComplianceState -eq "Compliant" -and $_.PolicyDefinitionId -eq "$PolicyDefinitionId" }
-
-#Write-Host $CompliantVMs.Resourceid
 
 #Loop through and install the SQL extension on each discovered VM
 foreach ($SQLVM in $CompliantVMs) {
