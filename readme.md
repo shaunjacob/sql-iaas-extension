@@ -38,7 +38,7 @@ This Initiative contains the following policy definitions:
 ·     Deploy the Linux Guest Configuration extension to enable Guest Configuration assignments on Linux VMs
 
  
-      ![Guest Configuration 1](https://github.com/shaunjacob/sql-iaas-extension/blob/main/Images/Guest%20Config%201.png)
+   ![Guest Configuration 1](https://github.com/shaunjacob/sql-iaas-extension/blob/main/Images/Guest%20Config%201.png)
  
  
 
