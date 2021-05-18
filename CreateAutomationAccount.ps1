@@ -19,7 +19,10 @@ param(
 	[string]$Location = "Australia East",
 
 	[Parameter(mandatory = $false)]
-	[string]$ArtifactsURI = 'https://raw.githubusercontent.com/shaunjacob/sql-iaas-extension/main'
+	[string]$ArtifactsURI = 'https://raw.githubusercontent.com/shaunjacob/sql-iaas-extension/main',
+
+	[Parameter(mandatory = $false)]
+	[string]$ScheduleName = 'DailySQLCheck'
 )
 
 # //todo refactor, improve error logging, externalize, centralize vars
@@ -152,4 +155,8 @@ if ($DeploymentStatus.ProvisioningState -ne 'Succeeded') {
 foreach ($ModuleName in $RequiredModules) {
 	Add-ModuleToAutoAccount -ResourceGroupName $ResourceGroupName -AutomationAccountName $AutomationAccountName -ModuleName $ModuleName
 }
+
+$StartTime = Get-Date "13:00:00"
+$EndTime = $StartTime.AddYears(1)
+New-AzAutomationSchedule -AutomationAccountName $automationAccountName -ResourceGroupName $ResourceGroupName -Name $ScheduleName -StartTime $StartTime -ExpiryTime $EndTime -DayInterval 1
 
