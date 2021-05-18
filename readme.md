@@ -39,7 +39,7 @@ This Initiative contains the following policy definitions:
  
  
 
-### 1. Select **Assign** to assign this initiative to your chosen subscription(s), you may add exclusions if required.
+"### 1." Select **Assign** to assign this initiative to your chosen subscription(s), you may add exclusions if required.
 
 ![Guest Configuration 1](https://github.com/shaunjacob/sql-iaas-extension/blob/main/Images/Guest%20Config%201.png)
 
