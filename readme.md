@@ -38,17 +38,15 @@ This Initiative contains the following policy definitions:
 ·     Deploy the Linux Guest Configuration extension to enable Guest Configuration assignments on Linux VMs
 
  
-
-![img](file:/)
-
+      ![Guest Configuration 1](https://github.com/shaunjacob/sql-iaas-extension/blob/main/Images/Guest%20Config%201.png)
+ 
  
 
 1. Select **Assign** to assign this initiative to your chosen subscription(s), you may add exclusions if required.
 
  
 
-![Guest Configuration 1](https://github.com/shaunjacob/sql-iaas-extension/blob/main/Images/Guest%20Config%201.png)
- 
+
 
 2. Under remediation, you will notice that a managed identity will be created. This is necessary to allow the scanning of deployed software inside a guest VM. This identity can be created in a location if your choice. Tick the box to “Create a remediation task”, which will add the system assigned managed identity to existing VM’s
 
