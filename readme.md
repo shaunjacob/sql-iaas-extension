@@ -29,13 +29,12 @@ The first set of policies that need to be applied are grouped as an Initiative. 
 
 This Initiative contains the following policy definitions:
 
-·     Add system-assigned managed identity to enable Guest Configuration assignments on virtual machines with no identities
+-     Add system-assigned managed identity to enable Guest Configuration assignments on virtual machines with no identities
 
-·     Add system-assigned managed identity to enable Guest Configuration assignments on VMs with a user-assigned identity
+-     Add system-assigned managed identity to enable Guest Configuration assignments on VMs with a user-assigned identity
+-     Deploy the Windows Guest Configuration extension to enable Guest Configuration assignments on Windows VMs
 
-·     Deploy the Windows Guest Configuration extension to enable Guest Configuration assignments on Windows VMs
-
-·     Deploy the Linux Guest Configuration extension to enable Guest Configuration assignments on Linux VMs
+-     Deploy the Linux Guest Configuration extension to enable Guest Configuration assignments on Linux VMs
 
  
    ![Guest Configuration 1](https://github.com/shaunjacob/sql-iaas-extension/blob/main/Images/Guest%20Config%201.png)
