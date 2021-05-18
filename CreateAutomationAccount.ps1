@@ -142,7 +142,7 @@ function Add-ModuleToAutoAccount {
 
 # Note: the URL for the scaling script will be suffixed with current timestamp in order to force the ARM template to update the existing runbook script in the auto account if any
 $URISuffix = "?time=$(get-date -f "yyyy-MM-dd_HH-mm-ss")"
-$ScriptURI = "$ArtifactsURI/deployextension.ps1"
+$ScriptURI = "$ArtifactsURI/DeployIaaSExtension.ps1"
 
 # Creating an automation account & runbook and publish the scaling script file
 $DeploymentStatus = New-AzResourceGroupDeployment -ResourceGroupName $ResourceGroupName -TemplateUri "$ArtifactsURI/runbookCreationTemplate.json" -AutomationAccountName $AutomationAccountName -RunbookName $RunbookName -location $Location -scriptUri "$ScriptURI$($URISuffix)" -Force -Verbose
@@ -156,7 +156,7 @@ foreach ($ModuleName in $RequiredModules) {
 	Add-ModuleToAutoAccount -ResourceGroupName $ResourceGroupName -AutomationAccountName $AutomationAccountName -ModuleName $ModuleName
 }
 
-$StartTime = Get-Date "13:00:00"
-$EndTime = $StartTime.AddYears(1)
-New-AzAutomationSchedule -AutomationAccountName $automationAccountName -ResourceGroupName $ResourceGroupName -Name $ScheduleName -StartTime $StartTime -ExpiryTime $EndTime -DayInterval 1
+#$StartTime = Get-Date "23:00:00"
+#$EndTime = $StartTime.AddYears(1)
+#New-AzAutomationSchedule -AutomationAccountName $automationAccountName -ResourceGroupName $ResourceGroupName -Name $ScheduleName -StartTime $StartTime -ExpiryTime $EndTime -DayInterval 1
 
