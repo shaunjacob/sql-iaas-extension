@@ -17,7 +17,7 @@ The SQL Server IaaS Agent extension allows for integration with the Azure portal
 
 
  
-
+#
 # Step 1: Assign Azure Policies
 
  
@@ -82,12 +82,11 @@ This policy works by scanning the registry for the application name, and if foun
 
 
 
- -
- -
- 
- 
- 
 
+ 
+ 
+ 
+#
 # Step 2: Deploy IaaS Extension via PowerShell
 
 
