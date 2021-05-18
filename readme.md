@@ -39,18 +39,18 @@ This Initiative contains the following policy definitions:
  
  
 
-1. Select **Assign** to assign this initiative to your chosen subscription(s), you may add exclusions if required.
+### 1. Select **Assign** to assign this initiative to your chosen subscription(s), you may add exclusions if required.
 
 ![Guest Configuration 1](https://github.com/shaunjacob/sql-iaas-extension/blob/main/Images/Guest%20Config%201.png)
 
 
 
-2. Under remediation, you will notice that a managed identity will be created. This is necessary to allow the scanning of deployed software inside a guest VM. This identity can be created in a location if your choice. Tick the box to “Create a remediation task”, which will add the system assigned managed identity to existing VM’s
+### 2. Under remediation, you will notice that a managed identity will be created. This is necessary to allow the scanning of deployed software inside a guest VM. This identity can be created in a location if your choice. Tick the box to “Create a remediation task”, which will add the system assigned managed identity to existing VM’s
 
 ![Guest Configuration 2](https://github.com/shaunjacob/sql-iaas-extension/blob/main/Images/Guest%20Config%202.png)
 
 
-3. Review and Create.
+### 3. Review and Create.
 
 ![Guest Configuration 2](https://github.com/shaunjacob/sql-iaas-extension/blob/main/Images/Guest%20Config%203.png)
 
