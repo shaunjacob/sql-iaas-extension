@@ -39,7 +39,7 @@ This Initiative contains the following policy definitions:
 
  
 
-![img](file:///C:/Users/SHAUNJ~1/AppData/Local/Temp/msohtmlclip1/01/clip_image002.jpg)
+![img](file:/)
 
  
 
@@ -47,8 +47,7 @@ This Initiative contains the following policy definitions:
 
  
 
-![img](file:///C:/Users/SHAUNJ~1/AppData/Local/Temp/msohtmlclip1/01/clip_image004.jpg)
-
+![Guest Configuration 1](https://github.com/shaunjacob/sql-iaas-extension/blob/main/Images/Guest%20Config%201.png)
  
 
 2. Under remediation, you will notice that a managed identity will be created. This is necessary to allow the scanning of deployed software inside a guest VM. This identity can be created in a location if your choice. Tick the box to “Create a remediation task”, which will add the system assigned managed identity to existing VM’s
