@@ -1,3 +1,4 @@
+
 # Identify and Install the SQL IaaS Extension
 
  
@@ -92,20 +93,17 @@ The final step is to deploy the IaaS extension to all VMs that this assigned pol
 Once the $CompliantVMs variable has been populated, the script will cycle through and deploy the extension on each VM and place them into Lightweight mode. For more information on the modes, please click [here](https://docs.microsoft.com/en-us/azure/azure-sql/virtual-machines/windows/sql-server-iaas-agent-extension-automate-management?tabs=azure-powershell#management-modes)
 
  
-
-\#Define the policy definition, this is the same ID across all Azure tenants
+```powershell
+#Define the policy definition, this is the same ID across all Azure tenants
 
 $PolicyDefinitionId = '/providers/Microsoft.Authorization/policyDefinitions/ebb67efd-3c46-49b0-adfe-5599eb944998'
 
- 
-
-\#Identify the VM's that are Compliant, and have SQL installed
+#Identify the VM's that are Compliant, and have SQL installed
 
 $CompliantVMs = Get-AzPolicyState | Where-Object { $_.ComplianceState -eq "Compliant" -and $_.PolicyDefinitionId -eq "$PolicyDefinitionId" }
 
  
-
-\#Loop through and install the SQL extension on each discovered VM
+#Loop through and install the SQL extension on each discovered VM
 
 foreach ($SQLVM in $CompliantVMs) {
 
@@ -127,7 +125,7 @@ foreach ($SQLVM in $CompliantVMs) {
 
 } 
 
- 
+``` 
 
  
 
@@ -135,9 +133,10 @@ foreach ($SQLVM in $CompliantVMs) {
 
 The script below will start the compliance scan manually on run. Usually, a compliance scan is run automatically every 24 hours, however it can be manually triggered. The method via PowerShell is as follows:
 
-\#Store parameters and Start the Azure compliance scan
 
- 
+
+```powershell
+#Store parameters and Start the Azure compliance scan
 
 $compliancejob = Start-AzPolicyComplianceScan -AsJob
 
@@ -146,22 +145,16 @@ $endstate = "Completed"
 $job = get-job -id $compliancejob.id
 
 do {
+ if($job.State -ne $endState) {
 
-  if($job.State -ne $endState) {
+    Write-Host "Waiting for compliance scan to complete..."
 
-​    Write-Host "Waiting for compliance scan to complete..."
-
-​    Start-Sleep -Seconds 5
+    Start-Sleep -Seconds 5
 
   }             
 
- 
-
 } while ($job.State -ne $endState) 
-
- 
-
-This will run a compliance scan and only end once this is successful.
+```
 
  
 
