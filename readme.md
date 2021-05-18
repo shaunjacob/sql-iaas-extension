@@ -49,13 +49,13 @@ This Initiative contains the following policy definitions:
 
  
 
-![img](file:///C:/Users/SHAUNJ~1/AppData/Local/Temp/msohtmlclip1/01/clip_image006.jpg)
+![Guest Configuration 2](https://github.com/shaunjacob/sql-iaas-extension/blob/main/Images/Guest%20Config%202.png)
 
  
 
 3. Review and Create.
 
-
+![Guest Configuration 2](https://github.com/shaunjacob/sql-iaas-extension/blob/main/Images/Guest%20Config%203.png)
 
  
 
