@@ -83,6 +83,8 @@ This policy works by scanning the registry for the application name, and if foun
 
 
  
+ 
+ 
 
 # Step 2: Deploy IaaS Extension via PowerShell
 
@@ -162,5 +164,5 @@ do {
 
  
 
-An automation account in Azure can be created to run this script at regular intervals, ensuring that any SQL VM’s detected will always have the IaaS extension deployed. The script to create the account with the required modules is CreateAutomationAccount.ps1
+An automation account in Azure can be created to run this script at regular intervals, ensuring that any SQL VM’s detected will always have the IaaS extension deployed. The script to create the account with the required modules is [CreateAutomationAccount.ps1](https://raw.githubusercontent.com/shaunjacob/sql-iaas-extension/main/CreateAutomationAccount.ps1)
 
