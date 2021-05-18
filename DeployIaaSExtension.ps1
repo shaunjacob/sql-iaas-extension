@@ -44,7 +44,7 @@ foreach ($SQLVM in $CompliantVMs) {
 
     if (!$check) {
     New-AzSqlVM -Name $vm.Name -ResourceGroupName $vm.ResourceGroupName -Location $vm.Location -LicenseType AHUB -SqlManagementType LightWeight
-    Write-Host $vm.name "has been created"
+    Write-Host $vm "has been created"
     }
 } 
 
